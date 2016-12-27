@@ -2,12 +2,50 @@
 
 The script `run_analysis.R`performs the 5 steps described in the course project's definition.
 
-* First, all the similar data is merged using the `rbind()` function. By similar, we address those files having the same number of columns and referring to the same entities.
-* Then, only those columns with the mean and standard deviation measures are taken from the whole dataset. After extracting these columns, they are given the correct names, taken from `features.txt`.
-* As activity data is addressed with values 1:6, we take the activity names and IDs from `activity_labels.txt` and they are substituted in the dataset.
-* On the whole dataset, those columns with vague column names are corrected.
-* Finally, we generate a new dataset with all the average measures for each subject and activity type (30 subjects * 6 activities = 180 rows). The output file is called `averages_data.txt`, and uploaded to this repository.
+* 
+###############################################################################
+# Getting and cleaning data course project
+# developed by lloyd Prendergast
+###############################################################################
 
+## load dplyr package to cobine data tables
+library(dplyr)
+
+## define url for source filename
+fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+
+## destination filename, will automatically save to current directory
+filename <- "getdata_dataset.zip"
+
+## Download and unzip the dataset:
+## first check if file existed already and delete it then retrieve it
+if (!file.exists(filename)){
+  
+  download.file(fileURL, filename)
+  unzip(filename, overwrite = TRUE) 
+  
+}else {
+  
+  file.remove(filename)
+  download.file(fileURL, filename)
+  unzip(filename, overwrite = TRUE)
+  
+}
+  
+# Step 1 - load and merge x dataset 
+# use features,txt to build filter used to extract mean and standard deviation
+
+# Step 2 - load and merge y dataset
+# use activity_labels.txt to get descriptive names and apply to columns
+
+# Step 3 - load and merge subject dataset
+
+# Step 4 - bind all the data in a single data set
+
+# Step 5 - Create a second, independent tidy data set with the average of each variable
+_data <- ddply(combined_data, .(subject, activity), function(x) colMeans(x[, 1:66]))
+
+write.table(tidy_data, "tidy_data.txt", row.name=FALSE)
 # Variables
 
 * `x_train`, `y_train`, `x_test`, `y_test`, `subject_train` and `subject_test` contain the data from the downloaded files.
