@@ -68,7 +68,7 @@ names(subject_data) <- "subject"
 # Step 4 - bind all the data in a single data set
 ###############################################################################
 combined_data <- cbind(x_data, y_data, subject_data)
-
+colnames(combined_data) <- c("subject", "activity", filter.names)
 
 # Step 5 - Create a second, independent tidy data set with the average of each variable
 #          for each activity and each subject
