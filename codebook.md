@@ -17,45 +17,44 @@ filename <- "getdata_dataset.zip"
 
 Download and unzip the dataset:
  first check if file existed already and delete it then retrieve it
-		if (!file.exists(filename)){
-			download.file(fileURL, filename) 
-			unzip(filename, overwrite = TRUE)
-			}
-		else { 
-			file.remove(filename)
-			download.file(fileURL, filename)
-			nzip(filename, overwrite = TRUE) 
-			}
+ 	if (!file.exists(filename)){
+		download.file(fileURL, filename
+		unzip(filename, overwrite = TRUE)
+		}
+	else { 
+		file.remove(filename)
+		download.file(fileURL, filename)
+		nzip(filename, overwrite = TRUE) 
+		}
 
 load and merge x dataset use features,txt to build filter used to 
 extract mean and standard deviation
-		features <- read.table("UCI HAR Dataset/features.txt") 
-		features[,2] <- as.character(features[,2]) 
-		filter <- grep(".mean.|.std.", features[,2]) 
-		filter.names <- features[filter,2] 
-		filter.names = gsub('-mean', 'Mean', filter.names) 
-		filter.names = gsub('-std', 'Std', filter.names) 
-		filter.names <- gsub('[-()]', '', filter.names)
+	features <- read.table("UCI HAR Dataset/features.txt") 
+	features[,2] <- as.character(features[,2]) 
+	filter <- grep(".mean.|.std.", features[,2]) 
+	filter.names <- features[filter,2] 
+	filter.names = gsub('-mean', 'Mean', filter.names) 	filter.names = gsub('-std', 'Std', filter.names) 
+	filter.names <- gsub('[-()]', '', filter.names)
 
-		x_train <- read.table("UCI HAR Dataset/train/X_train.txt")[filter] 
-		x_test <- read.table("UCI HAR Dataset/test/X_test.txt")[filter] 
-		x_data <- rbind(x_train, x_test)
+	x_train <- read.table("UCI HAR Dataset/train/X_train.txt")[filter] 
+	x_test <- read.table("UCI HAR Dataset/test/X_test.txt")[filter] 
+	x_data <- rbind(x_train, x_test)
 
 load and merge y dataset use activity_labels.txt to get descriptive names and apply to columns
-		y_train <- read.table("UCI HAR Dataset/train/y_train.txt") 
-		y_test <- read.table("UCI HAR Dataset/test/y_test.txt") 
-		y_data <- rbind(y_train, y_test)
+	y_train <- read.table("UCI HAR Dataset/train/y_train.txt") 
+	y_test <- read.table("UCI HAR Dataset/test/y_test.txt") 
+	y_data <- rbind(y_train, y_test)
 
-		activities <- read.table("UCI HAR Dataset/activity_labels.txt") 
-		y_data[, 1] <- activities[y_data[, 1], 2] 
-		names(y_data) <- "activity
+	activities <- read.table("UCI HAR Dataset/activity_labels.txt") 
+	y_data[, 1] <- activities[y_data[, 1], 2] 
+	names(y_data) <- "activity
 
 load and merge subject dataset
-		subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt") 
-		subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt") 
-		subject_data <- rbind(subject_train, subject_test)
+	subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt") 
+	subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt") 
+	subject_data <- rbind(subject_train, subject_test)
 
-		names(subject_data) <- "subject"
+	names(subject_data) <- "subject"
 
 bind all the data in a single data set
 		combined_data <- cbind(x_data, y_data, subject_data) 
