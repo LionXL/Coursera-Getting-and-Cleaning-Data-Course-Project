@@ -3,7 +3,7 @@
 
 ## Introduction
 
-The script run_analysis.Rperforms the 5 steps described in the course project's definition. 
+The script run_analysis.Rperforms the 5 steps described in the course project's definition.
 Those 5 steps are performed as follows:
 
 deplyr package was used to combine and manipulate data tables being used.
@@ -168,7 +168,9 @@ fBodyBodyGyroMagMeanFreq
 fBodyBodyGyroJerkMagMean
 fBodyBodyGyroJerkMagStd
 fBodyBodyGyroJerkMagMeanFreq
-Activity Labels
+
+
+## Activity Labels
 
 WALKING (value 1): subject was walking during the test
 WALKING_UPSTAIRS (value 2): subject was walking up a staircase during the test
