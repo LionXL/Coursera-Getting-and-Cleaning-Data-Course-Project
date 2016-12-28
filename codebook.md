@@ -9,10 +9,12 @@ The script `run_analysis.R`performs the 5 steps described in the course project'
 Those 5 steps are performed as follows:
 
 1. deplyr package was used to combine and manipulate data tables being used.
+
    load dplyr package to cobine data tables
    library(dplyr)
 
 2. define url for source filename
+
    fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 
 3. destination filename, will automatically save to current directory
@@ -20,10 +22,15 @@ Those 5 steps are performed as follows:
 
 4. Download and unzip the dataset:
    first check if file existed already and delete it then retrieve it
+   
    if (!file.exists(filename)){
+   
      download.file(fileURL, filename)
-     unzip(filename, overwrite = TRUE) 
+     
+     unzip(filename, overwrite = TRUE)
+     
    }else {
+   
      file.remove(filename)
      download.file(fileURL, filename)
       unzip(filename, overwrite = TRUE)
@@ -75,7 +82,7 @@ Those 5 steps are performed as follows:
    write.table(tidy_data, "tidy_data.txt", row.name=FALSE)
    
    
-# Variables
+## Variables
 
 * `x_train`, `y_train`, `x_test`, `y_test`, `subject_train` and `subject_test` contain the data from the downloaded files.
 * `x_data`, `y_data` and `subject_data` merge the previous datasets to further analysis.
