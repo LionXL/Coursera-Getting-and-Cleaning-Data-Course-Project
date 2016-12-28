@@ -7,10 +7,12 @@ The script run_analysis.Rperforms the 5 steps described in the course project's 
 Those 5 steps are performed as follows:
 
 deplyr package was used to combine and manipulate data tables being used.
-library(dplyr)
+
+	library(dplyr)
 
 define url for source filename
-fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+
+	fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 
 destination filename, will automatically save to current directory 
 
