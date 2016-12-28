@@ -67,13 +67,13 @@ names(subject_data) <- "subject"
 
 # Step 4 - bind all the data in a single data set
 ###############################################################################
-combined_data <- cbind(x_data, y_data, subject_data)
+combined_data <- cbind(subject_data, y_data, x_data)
 colnames(combined_data) <- c("subject", "activity", filter.names)
 
 # Step 5 - Create a second, independent tidy data set with the average of each variable
 #          for each activity and each subject
 #          66 <- 68 columns but last two (activity & subject)
 ###############################################################################
-tidy_data <- ddply(combined_data, .(subject, activity), function(x) colMeans(x[, 1:66]))
+tidy_data <- ddply(combined_data, .(subject, activity), function(x) colMeans(x[, 3:68))
 
 write.table(tidy_data, "tidy_data.txt", row.name=FALSE)
