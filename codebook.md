@@ -24,16 +24,12 @@ Those 5 steps are performed as follows:
    first check if file existed already and delete it then retrieve it
    
    if (!file.exists(filename)){
-   
-     download.file(fileURL, filename)
-     
-     unzip(filename, overwrite = TRUE)
-     
+         download.file(fileURL, filename)
+         unzip(filename, overwrite = TRUE)  
    }else {
-   
-     file.remove(filename)
-     download.file(fileURL, filename)
-      unzip(filename, overwrite = TRUE)
+         file.remove(filename)
+         download.file(fileURL, filename)
+         unzip(filename, overwrite = TRUE)
    }
   
 5. load and merge x dataset 
