@@ -65,12 +65,12 @@ load and merge subject dataset
 
 bind all the data in a single data set
 
-	combined_data <- cbind(x_data, y_data, subject_data) 
+	combined_data <- cbind(subject_data, y_data, x_data) 
 	colnames(combined_data) <- c("subject", "activity", filter.names)
 
 Create a second, independent tidy data set with the average of each variable 
 
-	tidy_data <- ddply(combined_data, .(subject, activity), function(x) colMeans(x[, 1:66]))
+	tidy_data <- ddply(combined_data, .(subject, activity), function(x) colMeans(x[, 3:68]))
 
 save datatable as text file 
 
