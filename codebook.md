@@ -13,10 +13,12 @@ define url for source filename
 fileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 
 destination filename, will automatically save to current directory 
-filename <- "getdata_dataset.zip"
+
+	filename <- "getdata_dataset.zip"
 
 Download and unzip the dataset:
  first check if file existed already and delete it then retrieve it
+ 
  	if (!file.exists(filename)){
 		download.file(fileURL, filename
 		unzip(filename, overwrite = TRUE)
@@ -29,6 +31,7 @@ Download and unzip the dataset:
 
 load and merge x dataset use features,txt to build filter used to 
 extract mean and standard deviation
+
 	features <- read.table("UCI HAR Dataset/features.txt") 
 	features[,2] <- as.character(features[,2]) 
 	filter <- grep(".mean.|.std.", features[,2]) 
@@ -41,6 +44,7 @@ extract mean and standard deviation
 	x_data <- rbind(x_train, x_test)
 
 load and merge y dataset use activity_labels.txt to get descriptive names and apply to columns
+
 	y_train <- read.table("UCI HAR Dataset/train/y_train.txt") 
 	y_test <- read.table("UCI HAR Dataset/test/y_test.txt") 
 	y_data <- rbind(y_train, y_test)
@@ -50,6 +54,7 @@ load and merge y dataset use activity_labels.txt to get descriptive names and ap
 	names(y_data) <- "activity
 
 load and merge subject dataset
+
 	subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt") 
 	subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt") 
 	subject_data <- rbind(subject_train, subject_test)
@@ -57,14 +62,17 @@ load and merge subject dataset
 	names(subject_data) <- "subject"
 
 bind all the data in a single data set
-		combined_data <- cbind(x_data, y_data, subject_data) 
-		colnames(combined_data) <- c("subject", "activity", filter.names)
+
+	combined_data <- cbind(x_data, y_data, subject_data) 
+	colnames(combined_data) <- c("subject", "activity", filter.names)
 
 Create a second, independent tidy data set with the average of each variable 
-		tidy_data <- ddply(combined_data, .(subject, activity), function(x) colMeans(x[, 1:66]))
+
+	tidy_data <- ddply(combined_data, .(subject, activity), function(x) colMeans(x[, 1:66]))
 
 save datatable as text file 
-		write.table(tidy_data, "tidy_data.txt", row.name=FALSE)
+
+	write.table(tidy_data, "tidy_data.txt", row.name=FALSE)
 
 ## Variables
 	x_train, y_train, x_test, y_test, subject_train and subject_test contain the data from the downloaded files.
