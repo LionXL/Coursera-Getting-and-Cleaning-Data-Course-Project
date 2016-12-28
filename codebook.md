@@ -56,6 +56,7 @@ Those 5 steps are performed as follows:
    names(y_data) <- "activity
    
 7. load and merge subject dataset
+
    subject_train <- read.table("UCI HAR Dataset/train/subject_train.txt")
    subject_test <- read.table("UCI HAR Dataset/test/subject_test.txt")
    subject_data <- rbind(subject_train, subject_test)
@@ -63,6 +64,7 @@ Those 5 steps are performed as follows:
    names(subject_data) <- "subject"
    
 8. bind all the data in a single data set
+
    combined_data <- cbind(x_data, y_data, subject_data)
    colnames(combined_data) <- c("subject", "activity", filter.names)
 
