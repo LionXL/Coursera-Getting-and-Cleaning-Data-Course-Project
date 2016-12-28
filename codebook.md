@@ -1,9 +1,9 @@
 ###############################################################################
 # Getting and cleaning data course project
-# developed by lloyd Prendergast
+## developed by lloyd Prendergast
 ###############################################################################
 
-# Introduction
+## Introduction
 
 The script `run_analysis.R`performs the 5 steps described in the course project's definition.
 Those 5 steps are performed as follows:
